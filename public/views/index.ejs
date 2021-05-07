@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>업다운 </title>
+    <style>
+        body, html{
+            height: 100%;
+        }
+        .app{
+            background:white;
+            width:100%;
+            height:100%;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            background-color: #F2F2F2;
+        }
+        .game-wrapper{
+            display:flex;
+            flex-direction: column;
+            justify-content:center;
+            align-items:center;
+            width:500px;
+            height:500px;  
+            background: white;
+            border-radius:3px;
+            border:1px solid #E6E6E6;
+        }
+        .game-wrapper .button-wrapper input{
+            padding:5px 12px;
+            border:1px solid #D8D8D8;
+            border-radius:5px;
+            margin-bottom:20px;
+        }
+        .game-wrapper .desc-wrapper{
+            color : #6E6E6E;
+            font-size:20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="app">
+        <div class="game-wrapper">
+            <div class="title">
+                <h1>Up! Down!</h1>
+            </div>
+            <div class="button-wrapper">
+                <input id="input" type="number">
+                <button id="result-btn">
+                    입력
+                </button>
+            </div>
+            <div class="desc-wrapper">
+                Down!
+            </div>
+        </div>
+    </div>
+    <script>
+        function getRandomResult() {
+            return Math.floor(Math.random() * 100)+1;
+        }
+
+        function validationResult( randomNumber, playerNumber ) {
+            console.log(`시스템 랜덤 숫자 : ${ randomNumber }`);
+            console.log(`사용자 숫자 : ${ playerNumber }`);
+            const descDom = document.querySelector(".desc-wrapper");
+            
+            if( randomNumber < playerNumber ){
+                descDom.innerHTML = "Down!!";
+            }else if( randomNumber > playerNumber ) {
+                descDom.innerHTML = "UP!!";
+            }else {
+                descDom.innerHTML = "당첨!!";
+                alert("술 한병 원샷하세용");
+                return false;
+            }
+        }
+
+        (function init() {
+            const randomNumber = getRandomResult();
+            
+            // button Click event
+            const resultButton = document.querySelector("#result-btn");
+            resultButton.addEventListener("click", (e) => {
+                // 사용자 번호 추출
+                const resultInput = document.querySelector("#input");
+                const value = resultInput.value;
+                if( value < 0 || 100 < value ){
+                    alert("1~100 사이의 숫자만 입력하세요!!");
+                    return false;
+                }
+
+
+                resultInput.value = "";
+                // 두 값 비교
+                validationResult( randomNumber, value );
+            });
+        })();
+        
+    </script>
+</body>
+</html>
