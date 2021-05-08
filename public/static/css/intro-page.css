@@ -59,6 +59,7 @@ body {
 }
 
 .main-container{
+    margin-top:50px;
     width:100%;
     padding:10px;
     display: flex;
@@ -87,6 +88,37 @@ body {
     background-color:white;
     border:1px solid #8a4baf;
     color:#8a4baf;
+}
+
+.bottom-container{
+    margin-top:50px;
+    width:100%;
+    padding:10px;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items:center;
+}
+.bottom-container i{
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    width:200px;
+    height:200px;
+    font-size:8rem;
+    /* border-radius:100%;
+    border:1px solid #CECEF6; */
+    background-image:url("../assets/img.jpg");
+    background-size:400px 400px;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    animation: move 28s infinite;
+}
+
+@keyframes move {
+    100%{
+        background-position: 5000px 0;
+    }
 }
 
 /* middle layout : 테블릿 & 데스크탑 레이아웃 */

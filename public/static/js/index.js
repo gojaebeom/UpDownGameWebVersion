@@ -1,13 +1,3 @@
-// start button click event 
-const startButton = document.querySelector(".start-button");
-startButton.addEventListener("click", async ( event ) => {
-    startButton.textContent = "loading..";
-    gameStart();
-    // setTimeout(() => {
-    //     gameStart();
-    // }, 1000);
-});
-
 // 레이아웃 그리기
 function redrawLayout() {
     const gameContainer = document.querySelector(".game-container");
@@ -43,10 +33,7 @@ function createHelloBotMessage( message ) {
         <span class="content-container">
             ${ message }
         </span>
-    </div>
-    
-    `;
-
+    </div>`;
     const gameBodyContainer = document.querySelector(".game-body-container");
     gameBodyContainer.appendChild( botChatDom );
 }
@@ -63,30 +50,29 @@ function createPlayerMessage( message ) {
         <span class="content-container">
             ${ message }
         </span>
-    </div>
-    
-    `;
-
+    </div>`;
     const gameBodyContainer = document.querySelector(".game-body-container");
     gameBodyContainer.appendChild( playerChatDom );
 }
 
-function createFinishRandomContent( ) {
+// 게임 종료시 랜덤한 이미지와 맨트 투척
+function createFinishRandomContent() {
     const imageArray = [
         {
             "img":"assets/img01.jpg",
-            "comment":"걸렸닭, 너가 치킨 쏜닭 🥳"
+            "comment":"걸렸닭, 오늘은 너가 치킨 쏜닭 🥳"
         },
         {
             "img":"assets/img02.jpg",
-            "comment":"소주한병 원샷 🙈"
-        }
+            "comment":"당첨~! 소주한병 원샷 🙈"
+        },
+        {
+            "img":"assets/img03.gif",
+            "comment":"당첨^.^ 업다운 개발자 커피사주기 🙏<br/>'아아'면 충분하오.."
+        },
     ];
 
     const imageArrayRandomNum = Math.floor(Math.random() * imageArray.length);
-
-    console.log(imageArray[imageArrayRandomNum]);
-
     return imageArray[imageArrayRandomNum];
 }
 
@@ -109,8 +95,12 @@ function inputPlayerValueEvnet( randomValue ) {
 
         // 사용자 채팅 생성
         createPlayerMessage( playerValue );
+        // Easter egg 🥚
+        if( playerValue === "안녕봇") {
+            createHelloBotMessage("왜불러");
+        }
         // 숫자가 아닌경우
-        if(Number(playerValue) !== 0 && !Number(playerValue)){
+        else if(Number(playerValue) !== 0 && !Number(playerValue)){
             createHelloBotMessage("숫자만 입력할 수 있습니다.<br/>다시 입력해주세요. 🤨");
         }
         // 1 ~ 100 사이의 숫자가 아닌 경우( 사용자가 이전에 입력했던 값보다 낮거나, 높은 값 입력한 경우 ) 
@@ -129,9 +119,11 @@ function inputPlayerValueEvnet( randomValue ) {
         }
         // 결과값 === 사용자 숫자
         else {
+            // 이후의 input 입력 방지
+            playerInput.disabled = true;
+            playerInput.placeholder = "게임이 종료되었습니다.";
+
             const {img, comment} = createFinishRandomContent();
-            console.log(img);
-            console.log(comment);
             createHelloBotMessage(`<img src="${img}" alt="당첨 이미지">`);
             createHelloBotMessage(comment);
             createHelloBotMessage(`
@@ -162,14 +154,30 @@ function exitButtonClickEvent() {
     }
 }
 
+// 게임 시작
 function gameStart() {
+    // -- 함수 실행시 바로 실행 🧨 --
+    // 레이아웃 새로 그리기
     redrawLayout();
-    
-    createHelloBotMessage("랜덤숫자를 생성중입니다..🎲 ");
+    // 안녕봇 맨트 투척
+    createHelloBotMessage("랜덤숫자를 생성중입니다.. 🎲");
+    // 새로운 랜덤값 생성
     const randomValue = createRandomValue();
+    // 안녕봇 맨트 투척
     createHelloBotMessage("랜덤숫자가 생성되었습니다.<br/>숫자를 입력해주세요!");
 
+    // -- 이벤트 발생시 실행 ✨ --
+    // 랜덤값을 파라미터로 전달하여 유저 숫자 제출 시 상호작용 이벤트 감지
     inputPlayerValueEvnet( randomValue );
-
+    // 종료 이벤트 감지
     exitButtonClickEvent();
 }
+
+// start button click event 
+const startButton = document.querySelector(".start-button");
+startButton.addEventListener("click", async ( event ) => {
+    startButton.textContent = "loading..";
+    setTimeout(() => {
+        gameStart();
+    }, 1000);
+});
