@@ -1,0 +1,115 @@
+/* default layout : 모바일&앱 기본 스타일 🥕 */
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&display=swap');
+*{
+    box-sizing: border-box;
+}
+html, body{
+    height: 100%;
+}
+body {
+    margin: 0px;
+    
+}
+
+#app-container{
+    width:100%;
+    height:100%;
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    background:#FAFAFA;
+}
+
+.game-container{
+    position: relative;
+    width:100%;
+    height:100%;
+    background:white;
+    overflow: hidden;
+}
+
+.header-container{
+    width:100%;
+    padding:20px;
+}
+
+.title-container{
+    font-family: 'Josefin Sans', sans-serif;
+    margin-top:50px;
+    font-size:2rem;
+    font-weight:bold;
+}
+.title-container .sub-title{
+    color: #8a4baf;
+    margin:0px;
+}
+.title-container .title{
+    color:black;
+    margin:0px;
+}
+.title-container .desc{
+    padding-left:0px;
+    list-style-type: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size:1rem;
+    font-weight:lighter;
+}
+.title-container .desc li{
+    margin-bottom:5px;
+}
+
+.main-container{
+    width:100%;
+    padding:10px;
+    display: flex;
+    justify-content:center;
+    align-items:center;
+}
+.main-container button{
+    padding:10px;
+    padding-top:15px;
+    background-color:#8a4baf;
+    border:none;
+    border-radius:5px;
+    font-size: 1.2rem;
+    font-family: 'Josefin Sans', sans-serif;
+    cursor: pointer;
+    box-sizing: content-box;
+    
+}
+.main-container .start-button{
+    background-color:#8a4baf;
+    border:none;
+    color:white;
+    margin-right:10px;
+}
+.main-container .follow-button{
+    background-color:white;
+    border:1px solid #8a4baf;
+    color:#8a4baf;
+}
+
+/* middle layout : 테블릿 & 데스크탑 레이아웃 */
+@media (min-width:501px) {
+    #app-container{
+        align-items:center;
+    }
+    .game-container{
+        width:80%;
+        max-width:500px;
+        height:90%;
+        border:1px solid #E6E6E6;
+        border-radius:5px;
+    }
+    .title-container{
+        
+    }
+
+}
+
+/* large layout : 데스크탑
+@media (min-width:1024px) {
+    #app-container{
+        align-items:center;
+    }
+} */

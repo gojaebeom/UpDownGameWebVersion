@@ -4,102 +4,44 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>업다운 </title>
-    <style>
-        body, html{
-            height: 100%;
-        }
-        .app{
-            background:white;
-            width:100%;
-            height:100%;
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            background-color: #F2F2F2;
-        }
-        .game-wrapper{
-            display:flex;
-            flex-direction: column;
-            justify-content:center;
-            align-items:center;
-            width:500px;
-            height:500px;  
-            background: white;
-            border-radius:3px;
-            border:1px solid #E6E6E6;
-        }
-        .game-wrapper .button-wrapper input{
-            padding:5px 12px;
-            border:1px solid #D8D8D8;
-            border-radius:5px;
-            margin-bottom:20px;
-        }
-        .game-wrapper .desc-wrapper{
-            color : #6E6E6E;
-            font-size:20px;
-        }
-    </style>
+    <title>Up or Down</title>
+    <link rel="stylesheet" href="css/intro-page.css">
+    <link rel="stylesheet" href="css/game-page.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
 </head>
 <body>
-    <div class="app">
-        <div class="game-wrapper">
-            <div class="title">
-                <h1>Up! Down!</h1>
+    <div id="app-container">
+        <div class="game-container">
+            <div class="header-container">
+                <div class="title-container">
+                    <p class="sub-title">Drinking game</p>
+                    <p class="title">Up👍 or Down👎</p>
+                    <ul class="desc">
+                        <li>🍬 게임이 시작되면 안녕봇이 1 부터 100 사이의<br/> 랜덤한 숫자를 생성합니다.</li> 
+                        <li>🧃 각 플레이어는 임의의 숫자를 입력하고<br/> 제출(enter 또는 버튼 클릭)합니다.</li>
+                        <li>🥤 안녕봇은 제출받은 숫자가 숨겨진 숫자보다 클 경우 <strong>Down</strong> , 작을 경우 <strong>Up</strong> 등의 힌트를 띄워줍니다.</li>
+                        <li>🍺 최종적으로 숫자에 걸린 사람이 벌칙에 걸리게 됩니다.(참가자들이 원하는대로 룰을 바꾸어도 괜찮습니다)</li>
+                    </ul>
+                </div>
+                <!-- title-container end -->
             </div>
-            <div class="button-wrapper">
-                <input id="input" type="number">
-                <button id="result-btn">
-                    입력
+            <!-- header-container end -->
+            <div class="main-container">
+                <button class="start-button">
+                    Game Start
+                </button>
+                <button class="follow-button"
+                    onclick="location.href='https://github.com/gojaebeom/up-down-app';"
+                >
+                    Git Hub
                 </button>
             </div>
-            <div class="desc-wrapper">
-                Down!
-            </div>
+            <!-- main-container end -->
         </div>
+        <!-- game-container end -->
     </div>
-    <script>
-        function getRandomResult() {
-            return Math.floor(Math.random() * 100)+1;
-        }
+    <!-- app-container end -->
 
-        function validationResult( randomNumber, playerNumber ) {
-            console.log(`시스템 랜덤 숫자 : ${ randomNumber }`);
-            console.log(`사용자 숫자 : ${ playerNumber }`);
-            const descDom = document.querySelector(".desc-wrapper");
-            
-            if( randomNumber < playerNumber ){
-                descDom.innerHTML = "Down!!";
-            }else if( randomNumber > playerNumber ) {
-                descDom.innerHTML = "UP!!";
-            }else {
-                descDom.innerHTML = "당첨!!";
-                alert("술 한병 원샷하세용");
-                return false;
-            }
-        }
-
-        (function init() {
-            const randomNumber = getRandomResult();
-            
-            // button Click event
-            const resultButton = document.querySelector("#result-btn");
-            resultButton.addEventListener("click", (e) => {
-                // 사용자 번호 추출
-                const resultInput = document.querySelector("#input");
-                const value = resultInput.value;
-                if( value < 0 || 100 < value ){
-                    alert("1~100 사이의 숫자만 입력하세요!!");
-                    return false;
-                }
-
-
-                resultInput.value = "";
-                // 두 값 비교
-                validationResult( randomNumber, value );
-            });
-        })();
-        
-    </script>
+    <script src="js/index.js"></script>
 </body>
 </html>

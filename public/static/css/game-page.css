@@ -1,0 +1,110 @@
+/* game 진행시 레이아웃  */
+.game-header-container{
+    display:flex;
+    justify-content:flex-start;
+    align-items:center;
+    width: 100%;
+    height: 60px;
+    padding-left:20px;
+    font-size:1.2rem;
+    font-weight: bold;
+    color:white;
+    background: linear-gradient(
+    103deg
+    , rgb(79, 91, 255) 0%, rgb(79, 91, 255) 50%, rgb(108, 79, 255)) 100% center;
+        box-shadow: rgb(0 0 0 / 10%) 0px 4px 6px 0px;
+}
+.game-header-container i{
+    margin-right:12px;
+    cursor: pointer;
+}
+
+.game-body-container{
+    padding:20px;
+    display:flex;
+    flex-direction: column;
+    justify-content:flex-start;
+    align-items:flex-start;
+    height:85%;
+    overflow:auto;
+}
+
+.game-bottom-container{
+    /* position: absolute;
+    left: 0px;
+    bottom:0px; */
+    width:100%;
+    height:60px;
+    border-top:1px solid #E6E6E6;
+}
+.game-bottom-container input{
+    border:none;
+    width:100%;
+    height:100%;
+    padding-left:20px;
+    font-size:16px;
+}
+.game-bottom-container input:focus{
+    outline: none;
+}
+
+.left-chat-container{
+    display: flex;
+    justify-content:flex-start;
+    width:100%;
+    margin-bottom:10px;
+}
+.left-chat-container .message-container{
+    display:flex;
+    flex-direction: column;
+}
+.left-chat-container .message-container .avatar-container{
+    margin-bottom:8px;
+    font-weight: bold;
+}
+.left-chat-container .message-container .avatar-container i{
+    color:#AC58FA;
+}
+.left-chat-container .message-container .content-container{
+    padding:5px 12px;
+    background:#F2F2F2;
+    border-radius:5px;
+}
+
+.right-chat-container{
+    display: flex;
+    justify-content:flex-end;
+    width:100%;
+    margin-bottom:10px;
+}
+.right-chat-container .message-container{
+    display:flex;
+    flex-direction: column;
+    align-items:flex-end;
+}
+.right-chat-container .message-container .avatar-container{
+    margin-bottom:8px;
+    font-weight: bold;
+}
+.right-chat-container .message-container .content-container{
+    padding:5px 12px;
+    background: #FACC2E;
+    border-radius:5px;
+}
+.content-container img{
+    width:100%;
+    border-radius:3px;
+}
+.content-container button{
+    cursor: pointer;
+    border:none;
+    border-radius:3px;
+    padding:6px 12px;
+}
+.content-container .restart-button{
+    background-color: #A9D0F5;
+}
+.content-container .home-button{
+    background-color: #E2A9F3;
+}
+
