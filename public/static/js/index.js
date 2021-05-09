@@ -87,11 +87,11 @@ function inputPlayerValueEvnet( randomValue ) {
     const playerValueInput = document.querySelector("#player-value-input");
     playerValueInput.addEventListener("change", ( event ) => {
         console.log(`랜덤 숫자 : ${ randomValue }`);
-        console.log(`플레이어 숫자 : ${ event.target.value }`);
+
         // input 박스
         const playerInput = event.target;
         // input 박스 값
-        const playerValue = event.target.value;
+        const playerValue =  event.target.value;
 
         // 사용자 채팅 생성
         createPlayerMessage( playerValue );
@@ -104,7 +104,9 @@ function inputPlayerValueEvnet( randomValue ) {
             createHelloBotMessage("숫자만 입력할 수 있습니다.<br/>다시 입력해주세요. 🤨");
         }
         // 1 ~ 100 사이의 숫자가 아닌 경우( 사용자가 이전에 입력했던 값보다 낮거나, 높은 값 입력한 경우 ) 
-        else if( playerValue <= lowLimitValue || playerValue >= highLimitValue){
+        else if( lowLimitValue >= Number(playerValue) || Number(playerValue) >= highLimitValue ){
+            console.log(lowLimitValue >= playerValue);
+            console.log(playerValue >= highLimitValue);
             createHelloBotMessage(`${ Number(lowLimitValue) + 1 } ~ ${ Number(highLimitValue) - 1 } 사이의 값만 입력할 수 있어요.<br/>다시 입력해주세요. 😤`);
         }
         // 결과값보다 숫자가 클경우
@@ -131,6 +133,10 @@ function inputPlayerValueEvnet( randomValue ) {
             <button class="home-button" onclick="location.href='/';">메인화면으로</button>
             `);
         }
+
+        console.log(`%c 플레이어 숫자 : ${ playerValue }`,"color:red");
+        console.log(`%c 낮은 숫자 : ${ lowLimitValue }`,"color:blue");
+        console.log(`%c 높은 숫자 : ${ highLimitValue }`,"color:green");
         
         // 스크롤 맨 밑으로 내리기
         setTimeout(()=>{
